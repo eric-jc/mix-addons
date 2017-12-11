@@ -19,7 +19,7 @@ var Sidebar = Widget.extend({
             'editable': true
         });
         this.sections = options.sections || [
-            {name: 'print', label: _t('Print')},
+            // {name: 'print', label: _t('Print')},
             {name: 'other', label: _t('Action')},
         ];
         this.items = options.items || {
