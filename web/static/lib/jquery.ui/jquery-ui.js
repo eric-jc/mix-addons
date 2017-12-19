@@ -6855,6 +6855,9 @@ $.widget( "ui.autocomplete", {
 	close: function( event ) {
 		this.cancelSearch = true;
 		this._close( event );
+		setTimeout(function(){
+			$(":focus").blur();
+		},300);
 	},
 
 	_close: function( event ) {
