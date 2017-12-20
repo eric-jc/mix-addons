@@ -6844,8 +6844,11 @@ $.widget( "ui.autocomplete", {
 		}
 		this._trigger( "response", null, { content: content } );
 		if ( !this.options.disabled && content && content.length && !this.cancelSearch ) {
-			// this._suggest( content );
-			// this._trigger( "open" );
+			if(content.length<=7) {
+				this._suggest( content );
+				this._trigger( "open" );
+			}
+
 		} else {
 			// use ._close() instead of .close() so we don't cancel future searches
 			this._close();

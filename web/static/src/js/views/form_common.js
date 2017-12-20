@@ -210,8 +210,8 @@ var CompletionFieldMixin = {
                 return dataset.name_search(search_val, self.build_domain(), 'ilike', 160).done(function(_data) {
                             self._search_create_popup("search", _data);
                         });
-
-                // values = values.slice(0, self.limit);
+            } else  {
+                values = values.slice(0, self.limit);
                 // values.push({
                 //     label: _t("Search More..."),
                 //     action: function() {
