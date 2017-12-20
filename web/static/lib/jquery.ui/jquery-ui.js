@@ -6470,7 +6470,8 @@ $.widget( "ui.autocomplete", {
 
 		this.element
 			.addClass( "ui-autocomplete-input" )
-			.attr( "autocomplete", "off" );
+			.attr( "autocomplete", "off" )
+			.attr("readOnly", "readOnly");
 
 		this._on( this.element, {
 			keydown: function( event ) {
