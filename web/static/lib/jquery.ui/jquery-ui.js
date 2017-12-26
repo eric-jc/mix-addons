@@ -6468,10 +6468,17 @@ $.widget( "ui.autocomplete", {
 		this.valueMethod = this.element[ isTextarea || isInput ? "val" : "text" ];
 		this.isNewMenu = true;
 
-		this.element
-			.addClass( "ui-autocomplete-input" )
-			.attr( "autocomplete", "off" )
-			.attr("readOnly", "readOnly");
+		var u = navigator.userAgent;
+		if(u.indexOf('Android')>-1 || u.indexOf('Adr')>-1 || !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
+			this.element
+				.addClass("ui-autocomplete-input")
+				.attr("autocomplete", "off")
+				.attr("readOnly", "readOnly");
+		}else {
+			this.element
+				.addClass("ui-autocomplete-input")
+				.attr("autocomplete", "off");
+		}
 
 		this._on( this.element, {
 			keydown: function( event ) {
@@ -6851,9 +6858,10 @@ $.widget( "ui.autocomplete", {
 					this._suggest(content);
 					this._trigger("open");
 				}
+			} else {
+				this._suggest(content);
+				this._trigger("open");
 			}
-			this._suggest(content);
-			this._trigger("open");
 		} else {
 			// use ._close() instead of .close() so we don't cancel future searches
 			this._close();
@@ -6863,9 +6871,12 @@ $.widget( "ui.autocomplete", {
 	close: function( event ) {
 		this.cancelSearch = true;
 		this._close( event );
-		setTimeout(function(){
-			$(":focus").blur();
-		},300);
+		var u = navigator.userAgent;
+		if(u.indexOf('Android')>-1 || u.indexOf('Adr')>-1 || !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
+			setTimeout(function () {
+				$(":focus").blur();
+			}, 300);
+		}
 	},
 
 	_close: function( event ) {
