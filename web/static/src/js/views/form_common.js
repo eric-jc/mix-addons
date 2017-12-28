@@ -207,12 +207,6 @@ var CompletionFieldMixin = {
 
             // search more... if more results that max
             if (values.length > self.limit) {
-                var u = navigator.userAgent;
-                if(u.indexOf('Android')>-1 || u.indexOf('Adr')>-1 || !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
-                    return dataset.name_search(search_val, self.build_domain(), 'ilike', 160).done(function (_data) {
-                        self._search_create_popup("search", _data);
-                    });
-                }
                 values = values.slice(0, self.limit);
                 values.push({
                     label: _t("Search More..."),
